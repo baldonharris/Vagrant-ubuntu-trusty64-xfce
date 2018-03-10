@@ -1,12 +1,12 @@
-A vagrant based on ubuntu/trusty64 for Virtual Box packed with:
+A vagrant box based on ubuntu/trusty64 for Virtual Box with provisions such as:
 
--> XFCE
--> git
--> docker
--> docker-compose
--> npm
--> composer
--> chrome
+1. XFCE
+2. git
+3. docker
+4. docker-compose
+5. npm
+6. composer
+7. chrome
 
 To start:
 
