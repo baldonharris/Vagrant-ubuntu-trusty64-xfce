@@ -64,10 +64,10 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
+    	sudo apt-get update
 	
 	# install xfce
-    sudo apt-get install -y xfce4
+    	sudo apt-get install -y xfce4
 	sudo apt-get install -y xfce4-goodies
 	
 	# install git
@@ -99,5 +99,26 @@ Vagrant.configure("2") do |config|
 	echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
 	sudo apt-get update
 	sudo apt-get install -y google-chrome-stable
+
+	# install python and pip
+	sudo apt-get update
+	sudo /usr/share/debconf/fix_db.pl
+	diff -u /var/cache/debconf/config.dat{-old,}    | grep ^[+-]Name
+	diff -u /var/cache/debconf/templates.dat{-old,} | grep ^[+-]Name
+	sudo dpkg-reconfigure dictionaries-common
+	sudo apt-get upgrade -y
+	sudo apt-get install python3
+	sudo apt-get install -y python3-pip
+	sudo pip3 install virtualenv
+	sudo apt-get install libmysqlclient-dev
+	
+	# install arcanist
+	sudo apt-get update
+	sudo apt-get install -y php5
+	sudo apt-get install -y php5-curl
+	cd
+	mkdir Arcanist
+	git clone https://github.com/phacility/libphutil.git
+	git clone https://github.com/phacility/arcanist.git
   SHELL
 end
